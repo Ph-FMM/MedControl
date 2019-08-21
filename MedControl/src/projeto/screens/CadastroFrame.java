@@ -220,6 +220,7 @@ public class CadastroFrame extends JFrame{
 				}
 				
 				HomeFrame.usuario.createUser(email, username, pswd);
+				HomeFrame.usuario.readUser(username);
 
 				if(aux==false) {
 					HomeFrame.homeFrame.setEnabled(true);

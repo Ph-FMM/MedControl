@@ -261,7 +261,8 @@ public class CreateTablePanel extends JPanel{
 		lbDelete.addMouseListener(new MouseAdapter() {
 			
 			public void mouseClicked(MouseEvent arg0) {
-				HomeFrame.table.deleteTabela(HomeFrame.table.getId(i));
+				
+				HomeFrame.table.deleteTabela(HomeFrame.table.getId(i),i);
 				
 				i=0;
 				
@@ -270,6 +271,7 @@ public class CreateTablePanel extends JPanel{
 				btTabela.doClick();
 				
 				btFoward.setEnabled(false);
+				btNext.setEnabled(true);
 	        }
 		});
 		
@@ -377,13 +379,13 @@ public class CreateTablePanel extends JPanel{
 				
 				if(HomeFrame.table.getId(0)!=0) {
 					salvar = true;
-					
+					System.out.println("teste");
 					lbNome3.setText(HomeFrame.table.getNome(i));
 					lbTamX3.setText(String.valueOf(HomeFrame.table.getTamx(i)));
 					lbTamY3.setText(String.valueOf(HomeFrame.table.getTamy(i)));
 					lbDesc3.setText(HomeFrame.table.getDescri(i));
 				}
-				showTablePanel.setVisible(salvar);
+				showTablePanel.setVisible(true);
 			}
 		});
 	}

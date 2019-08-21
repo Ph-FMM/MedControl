@@ -8,28 +8,28 @@ import com.mysql.jdbc.Statement;
 
 public class Sql {
 	
-	private static String status = "Not Connected";
-	public static java.sql.Statement stmt;
+	private final static String HOST = "localhost";
+	private final static String PORT = "3306";
+	private final static String DATABASE = "medcontrol";
+	private final static String USER = "root";
+	private final static String PASS = "";
 	
-	public Sql(){
-		
-	}
+	private final static String driver = "com.mysql.jdbc.Driver";	
+	private final static String myURL = "jdbc:mysql://"+HOST+":"+PORT+"/"+DATABASE;
+	
+	private static String status = "Not Connected";
 	
 	public static java.sql.Connection getConexao() {
 		java.sql.Connection connect = null;
 		
 		try {
-			String driver = "com.mysql.jdbc.Driver";
-			String myURL = "jdbc:mysql://localhost:3306/medcontrol";
-			
+
 			Class.forName(driver);
 			
-			connect = DriverManager.getConnection(myURL,"root","");
+			connect = DriverManager.getConnection(myURL,USER,PASS);
 			
 			if(connect!=null) status = "Sucessfull connected";
 			else status = "Impossible to connect";
-			
-			stmt = connect.createStatement();
 			
 			return connect;
 		}

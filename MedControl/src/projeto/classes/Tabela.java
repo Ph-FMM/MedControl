@@ -39,6 +39,14 @@ public class Tabela {
 			stmt.setInt(5, HomeFrame.usuario.getId());
 			
 			stmt.execute();
+			
+			query = "SELECT id FROM tabelas WHERE nome ='"+nome+"' and "
+					+ "idUser ="+HomeFrame.usuario.getId()+";";
+			ResultSet rs = stmt.executeQuery(query);
+			rs.first();
+			setId(rs.getInt("id"), length);
+			setLength(getLength()+1);
+			
 			conn.close();
 		}
 		catch(Exception e) {
@@ -70,7 +78,7 @@ public class Tabela {
 				setLength(getLength() + 1);
 				i++;
 			}
-			
+			setLength(i);
 			conn.close();
 		}
 		catch(Exception e) {
@@ -106,7 +114,7 @@ public class Tabela {
 		}
 	}
 	
-	public void deleteTabela(int id){
+	public void deleteTabela(int id,int i){
 		try {
 			Connection conn = Sql.getConexao();
 			System.out.println(Sql.statusConection()+": deleteTabela()");
@@ -117,13 +125,13 @@ public class Tabela {
 			
 			conn.close();
 			
-			for(int i=0;i<length-1;i++) {
-				setId(getId(i+1), i);
-				setNome(getNome(i+1),i);
-				setTamx(getTamx(i+1),i);
-				setTamy(getTamy(i+1),i);
-				setDescri(getDescri(i+1),i);
-				i++;
+			for(int j=i;j<length-1;j++) {
+				setId(getId(j+1), j);
+				setNome(getNome(j+1),j);
+				setTamx(getTamx(j+1),j);
+				setTamy(getTamy(j+1),j);
+				setDescri(getDescri(j+1),j);
+				j++;
 			}
 			
 			setLength(getLength()-1);

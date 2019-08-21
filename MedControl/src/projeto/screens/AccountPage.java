@@ -290,6 +290,11 @@ public class AccountPage extends JPanel{
 						
 						stmt.execute();
 						
+						query = "SELECT id FROM usuario WHERE cpf = '"+cpf1+"';";
+						ResultSet rs = stmt.executeQuery(query);
+						rs.first();
+						HomeFrame.usuario.setId(rs.getInt("id"));
+						
 						conn.close();
 					}
 					catch(Exception e) {
@@ -318,6 +323,7 @@ public class AccountPage extends JPanel{
 					taendereco.setVisible(false);
 					lbSalvar.setVisible(false);
 					lbEditInfo.setVisible(true);
+					newAcc = false;
 				}
 				else {
 					String name=tfnome.getText(),zip=tfcep.getText(),
