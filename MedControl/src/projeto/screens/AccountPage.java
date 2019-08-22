@@ -27,10 +27,12 @@ import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
+import projeto.images.Image;
 import projeto.sql.Sql;
 
 public class AccountPage extends JPanel{
 	
+	private Image img;
 	private JPanel avatarPanel,personalInfoPanel,persDeletePanel;
 	private JLabel userAvatar,lbEditAvatar,lbEmail;
 	
@@ -66,14 +68,13 @@ public class AccountPage extends JPanel{
 	static JTextField[] tfInfos = {tfnome,tfidade,tfpeso,tfcpf,tfcep};
 	
 	static boolean newAcc = false;
-	
-	ImageIcon saveico = new ImageIcon(getClass().getResource("/projeto/images/save.png"));
-	ImageIcon user_ico = new ImageIcon(getClass().getResource("/projeto/images/user.png"));
-	ImageIcon editico = new ImageIcon(getClass().getResource("/projeto/images/editico.png"));
-	
+		
 	Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 	
 	public AccountPage(){
+		
+		img = new Image();
+		
 		initComponents();
 		events();
 	}
@@ -217,10 +218,10 @@ public class AccountPage extends JPanel{
 		avatarPanel.setLayout(new GridLayout(2,1,0,0));
 		add(avatarPanel);
 		
-		userAvatar = new JLabel(user_ico);
+		userAvatar = new JLabel(img.getUser_ico());
 		avatarPanel.add(userAvatar);
 		
-		lbEditAvatar = new JLabel(editico);
+		lbEditAvatar = new JLabel(img.getEditico());
 		lbEditAvatar.setBounds((screen.width/3)+30, 0, 20, 20);
 		lbEditAvatar.setBackground(new Color(75, 75, 75, 123));
 		add(lbEditAvatar);
@@ -229,12 +230,12 @@ public class AccountPage extends JPanel{
 		persEdit();
 		persDelete();
 		
-		lbEditInfo = new JLabel(editico);
+		lbEditInfo = new JLabel(img.getEditico());
 		lbEditInfo.setBounds((screen.width/3)+30, 270, 20, 20);
 		lbEditInfo.setBackground(new Color(75, 75, 75, 123));
 		add(lbEditInfo);
 		
-		lbSalvar = new JLabel(saveico);
+		lbSalvar = new JLabel(img.getSaveico());
 		lbSalvar.setBounds((screen.width/3)+30, 270, 20, 20);
 		lbSalvar.setVisible(false);
 		add(lbSalvar);

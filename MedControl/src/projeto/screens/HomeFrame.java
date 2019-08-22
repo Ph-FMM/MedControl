@@ -9,6 +9,7 @@ import javax.swing.*;
 import projeto.classes.Tabela;
 import projeto.classes.User;
 import projeto.sql.Sql;
+import projeto.images.Image;
 
 public class HomeFrame extends JFrame{
 	
@@ -16,6 +17,8 @@ public class HomeFrame extends JFrame{
 	public static ConfigPagePanel configPagePanel;
 	public static CreateTablePanel createTablePanel;
 	public static TablesPanel tablesPanel;
+	
+	private Image img;
 	
 	public static User usuario;
 	public static Tabela table;
@@ -36,23 +39,15 @@ public class HomeFrame extends JFrame{
 	
 	Font f1 = new Font(Font.SANS_SERIF,Font.PLAIN,17);
 	Font f2 = new Font(Font.SANS_SERIF,Font.BOLD,18);
-	
-	ImageIcon logoIco = new ImageIcon(getClass().getResource("/projeto/images/logoIco.png"));
-	ImageIcon background_img = new ImageIcon(getClass().getResource("/projeto/images/background.png"));
-	ImageIcon logo_img = new ImageIcon(getClass().getResource("/projeto/images/Med Control Logo.png"));
-	ImageIcon config_ico = new ImageIcon(getClass().getResource("/projeto/images/config.png"));
-	ImageIcon notif_ico = new ImageIcon(getClass().getResource("/projeto/images/notif.png"));
-	ImageIcon user_ico = new ImageIcon(getClass().getResource("/projeto/images/user.png"));
-	ImageIcon home_ico = new ImageIcon(getClass().getResource("/projeto/images/home.png"));
-	ImageIcon table_ico = new ImageIcon(getClass().getResource("/projeto/images/table.png"));
-	ImageIcon others_ico = new ImageIcon(getClass().getResource("/projeto/images/others.png"));
-	
+		
 	public HomeFrame() {
-		initComponents();
-		events();
 		
 		usuario = new User();
 		table = new Tabela();
+		img = new Image();
+		
+		initComponents();
+		events();
 	}
 	
 	public void menu() {
@@ -65,7 +60,7 @@ public class HomeFrame extends JFrame{
 		
 		btHome = new JButton("  Home Page");
 		btHome.setBounds(30, 0, 170, 40);
-		btHome.setIcon(home_ico);
+		btHome.setIcon(img.getHome_ico());
 		btHome.setBackground(Color.darkGray);
 		btHome.setForeground(Color.red);
 		btHome.setFont(f1);
@@ -76,7 +71,7 @@ public class HomeFrame extends JFrame{
 		
 		btTables = new JButton("  Tables");
 		btTables.setBounds(220, 0, 125, 40);
-		btTables.setIcon(table_ico);
+		btTables.setIcon(img.getTable_ico());
 		btTables.setBackground(Color.darkGray);
 		btTables.setForeground(Color.gray);
 		btTables.setFont(f1);
@@ -87,7 +82,7 @@ public class HomeFrame extends JFrame{
 		
 		btUser = new JButton();
 		btUser.setBounds(screen.width-200,0, 200, 40);
-		btUser.setIcon(user_ico);
+		btUser.setIcon(img.getUser_ico());
 		btUser.setText("  Username");
 		btUser.setBackground(Color.darkGray);
 		btUser.setForeground(Color.gray);
@@ -100,7 +95,7 @@ public class HomeFrame extends JFrame{
 		
 		btConfig = new JButton();
 		btConfig.setBounds(screen.width-270, 0, 50, 40);
-		btConfig.setIcon(config_ico);
+		btConfig.setIcon(img.getConfig_ico());
 		btConfig.setBackground(Color.darkGray);
 		btConfig.setForeground(Color.gray);
 		btConfig.setFont(f1);
@@ -111,7 +106,7 @@ public class HomeFrame extends JFrame{
 		
 		btNotif = new JButton();
 		btNotif.setBounds(screen.width-330, 0, 50, 40);
-		btNotif.setIcon(notif_ico);
+		btNotif.setIcon(img.getNotif_ico());
 		btNotif.setBackground(Color.darkGray);
 		btNotif.setForeground(Color.gray);
 		btNotif.setFont(f1);
@@ -122,7 +117,7 @@ public class HomeFrame extends JFrame{
 		
 		btOthers = new JButton();
 		btOthers.setBounds(screen.width-390, 0, 50, 40);
-		btOthers.setIcon(others_ico);
+		btOthers.setIcon(img.getOthers_ico());
 		btOthers.setBackground(Color.darkGray);
 		btOthers.setForeground(Color.gray);
 		btOthers.setFont(f1);
@@ -145,7 +140,7 @@ public class HomeFrame extends JFrame{
 		
 		logo = new JLabel();
 		logo.setBounds(200, 150, 350, 350);
-		logo.setIcon(logo_img);
+		logo.setIcon(img.getLogo_img());
 		logo.setHorizontalAlignment(SwingConstants.CENTER);
 		homepagePanel.add(logo);
 		
@@ -219,7 +214,7 @@ public class HomeFrame extends JFrame{
 		
 		setTitle("Med Control");
 		setSize(screen.width,screen.height);
-		setIconImage(logoIco.getImage());
+		setIconImage(img.getLogoIco().getImage());
 		setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
 		setLayout(null);
 		
@@ -251,7 +246,7 @@ public class HomeFrame extends JFrame{
 		userItens(pnUsername);
 		
 		background = new JLabel();
-		background.setIcon(background_img);
+		background.setIcon(img.getBackground_img());
 		add(background);
 		background.setBounds(0,40,screen.width,screen.height);
 		

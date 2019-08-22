@@ -11,11 +11,14 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import projeto.images.Image;
+
 public class SignInPagePanel extends JPanel{
 	
 	private JPanel panelTxt,panelLogIn;
 	private JLabel txt_back1,txt_back2,txt_back3,lbLogIn;
 	
+	private Image img;
 
 	public static JButton btLogMed,btLogGoogle,btLogFace;
 	
@@ -31,6 +34,9 @@ public class SignInPagePanel extends JPanel{
 	Font f1 = new Font(Font.SANS_SERIF,Font.PLAIN,17);
 	
 	public SignInPagePanel(){
+		
+		img = new Image();
+		
 		initComponents();
 	}
 	
@@ -41,13 +47,13 @@ public class SignInPagePanel extends JPanel{
 		setVisible(true);
 		
 		txt_back1 = new JLabel();
-		txt_back1.setIcon(txtback1);
+		txt_back1.setIcon(img.getTxtback1());
 		
 		txt_back2 = new JLabel();
-		txt_back2.setIcon(txtback2);
+		txt_back2.setIcon(img.getTxtback2());
 		
 		txt_back3 = new JLabel();
-		txt_back3.setIcon(txtback3);
+		txt_back3.setIcon(img.getTxtback3());
 		
 		panelTxt = new JPanel();
 		panelTxt.setBounds(0, 0, 400, getHeight());
@@ -73,7 +79,7 @@ public class SignInPagePanel extends JPanel{
 		
 		
 		btLogMed = new JButton();
-		btLogMed.setIcon(MedIcon);
+		btLogMed.setIcon(img.getMedIcon());
 		btLogMed.setSize(300,50);
 		btLogMed.setForeground(Color.white);
 		btLogMed.setBackground(Color.red);
@@ -82,7 +88,7 @@ public class SignInPagePanel extends JPanel{
 		panelLogIn.add(btLogMed);
 		
 		btLogGoogle = new JButton();
-		btLogGoogle.setIcon(googleIcon);
+		btLogGoogle.setIcon(img.getGoogleIcon());
 		btLogGoogle.setSize(300,50);
 		btLogGoogle.setBackground(Color.white);
 		btLogGoogle.setOpaque(false);
@@ -90,7 +96,7 @@ public class SignInPagePanel extends JPanel{
 		panelLogIn.add(btLogGoogle);
 		
 		btLogFace = new JButton();
-		btLogFace.setIcon(FaceIcon);
+		btLogFace.setIcon(img.getFaceIcon());
 		btLogFace.setSize(300,50);
 		btLogFace.setForeground(Color.white);
 		btLogFace.setBackground(Color.blue);

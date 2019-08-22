@@ -7,14 +7,16 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import projeto.classes.User;
+import projeto.images.Image;
 import projeto.sql.Sql;
 
 public class CadastroFrame extends JFrame{
 	
 	public static User usuario;
-	
 	public static JPanel configpagePanel;
 	public static String pswd,username,email;
+	
+	private Image img;
 	private String pswdConfirm;
 	private JLabel lbUser,lbEmail,lbPswd,lbPswdConfirm,logar;
 	private JTextField tfUser,tfEmail;
@@ -28,9 +30,11 @@ public class CadastroFrame extends JFrame{
 	Font f1 = new Font(Font.SANS_SERIF, Font.BOLD, 20);
 	Font f2 = new Font(Font.SANS_SERIF, Font.BOLD, 8);
 	
-	ImageIcon backgrd = new ImageIcon(getClass().getResource("/projeto/images/backlogin.jpg"));
 	
 	public CadastroFrame(){
+		
+		img = new Image();
+		
 		initComponents();
 		events();
 	}
@@ -158,7 +162,7 @@ public class CadastroFrame extends JFrame{
 		
 		bckgrd = new JLabel();
 		bckgrd.setBounds(0, 0, 320, 480);
-		bckgrd.setIcon(backgrd);
+		bckgrd.setIcon(img.getBackgrd_login());
 		panel.add(bckgrd);
 		
 		HomeFrame.homeFrame.setEnabled(false);

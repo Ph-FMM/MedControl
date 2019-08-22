@@ -11,10 +11,12 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 import projeto.classes.User;
+import projeto.images.Image;
 import projeto.sql.Sql;
 
 public class SignInFrame extends JFrame{
 	
+	private Image img;
 	private String auth,senha;
 	private JLabel lbUser,lbPswd,logar,bckgrd,red;
 	private JTextField tfUser;
@@ -22,7 +24,6 @@ public class SignInFrame extends JFrame{
 	private JPasswordField pfSenha;
 	private JButton btSignIn,btReturn,btRegister;
 	private JPanel panel;
-	private static SignInFrame frame;
 	
 	public static User usuario;
 	
@@ -31,10 +32,11 @@ public class SignInFrame extends JFrame{
 	private String bdSenha = null;
 	
 	Font f1 = new Font(Font.SANS_SERIF, Font.BOLD, 20);
-	
-	ImageIcon backgrd = new ImageIcon(getClass().getResource("/projeto/images/backlogin.jpg"));
-	
+		
 	public SignInFrame() {
+		
+		img = new Image();
+		
 		initComponents();
 		events();
 	}
@@ -133,7 +135,7 @@ public class SignInFrame extends JFrame{
 		
 		bckgrd = new JLabel();
 		bckgrd.setBounds(0, 0, 320, 480);
-		bckgrd.setIcon(backgrd);
+		bckgrd.setIcon(img.getBackgrd_login());
 		panel.add(bckgrd);
 		
 		HomeFrame.homeFrame.setEnabled(false);

@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import projeto.classes.Tabela;
+import projeto.images.Image;
 
 public class CreateTablePanel extends JPanel{
 	
@@ -36,15 +37,18 @@ public class CreateTablePanel extends JPanel{
 	private JTextField tfNomeTabela,tfTamX,tfTamY;
 	private JTextArea taDesc;
 	
+	private Image img;
+	
 	private String nome,desc;
 	private int tamx,tamy;
-	
-	ImageIcon deleteico = new ImageIcon(getClass().getResource("/projeto/images/deleteico.png"));
-	
+		
 	Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 	private JButton btUpdate2;
 	
 	public CreateTablePanel() {
+		
+		img = new Image();
+		
 		initComponents();
 		events();
 	}
@@ -230,7 +234,7 @@ public class CreateTablePanel extends JPanel{
 		btFoward.setEnabled(false);
 		showTablePanel.add(btFoward);
 		
-		lbDelete = new JLabel(deleteico);
+		lbDelete = new JLabel(img.getDeleteico());
 		lbDelete.setBounds((screen.width/3)+30, 0, 20, 20);
 		showTablePanel.add(lbDelete);
 		
