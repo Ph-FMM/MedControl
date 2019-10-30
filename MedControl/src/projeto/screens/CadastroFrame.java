@@ -2,6 +2,7 @@ package projeto.screens;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Window;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -223,24 +224,13 @@ public class CadastroFrame extends JFrame{
 					aux = true;
 				}
 				
-				HomeFrame.usuario.createUser(email, username, pswd);
 				HomeFrame.usuario.readUser(username);
 
 				if(aux==false) {
-					HomeFrame.homeFrame.setEnabled(true);
-					HomeFrame.homepagePanel.setVisible(false);
-					HomeFrame.signInPagePanel.setVisible(false);
 					HomeFrame.btUser.setText(username);
-					HomeFrame.menuEnabled(true);
 
-					HomeFrame.configPagePanel.setVisible(true);
-					AccountPage.newAcc = true;
-					HomeFrame.configPagePanel.btPersonalData.doClick();
-					HomeFrame.configPagePanel.accountbt.setVisible(true);
-					HomeFrame.configPagePanel.auxAccount = true;
-
-					
-					
+					PerguntaFrame frame = new PerguntaFrame();
+					frame.setVisible(true);
 					dispose();
 				}
 			}

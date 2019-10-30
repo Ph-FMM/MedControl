@@ -21,7 +21,7 @@ public class User {
 	}
 	
 	//CRUD
-	public void createUser(String emailuser, String username, String pswd) {
+	public void createUser(String emailuser, String username, String pswd, String pergunta) {
 		try {
 			setEmail(emailuser);
 			setUserName(username);
@@ -30,13 +30,14 @@ public class User {
 			java.sql.Connection conn = Sql.getConexao();
 			System.out.println(Sql.statusConection()+": createUser()");
 			
-			String query = "INSERT INTO conta(email,userName,senha,stats) VALUES(?,?,?,?)";
+			String query = "INSERT INTO conta(email,userName,senha,pergunta,stats) VALUES(?,?,?,?,?)";
 			
 			java.sql.PreparedStatement stmt = conn.prepareStatement(query);
 			stmt.setString(1, emailuser);
 			stmt.setString(2, username);
 			stmt.setString(3, pswd);
-			stmt.setString(4, "1");
+			stmt.setString(4, pergunta);
+			stmt.setString(5, "1");
 			
 			stmt.execute();
 			conn.close();
