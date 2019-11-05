@@ -9,10 +9,10 @@ import com.mysql.jdbc.Statement;
 public class Sql {
 	
 	private final static String HOST = "localhost";
-	private final static String PORT = "3306";
+	private final static String PORT = "3307";
 	private final static String DATABASE = "medcontrol";
 	private final static String USER = "root";
-	private final static String PASS = "1234";
+	private final static String PASS = "";
 	
 	private final static String driver = "com.mysql.jdbc.Driver";	
 	private final static String myURL = "jdbc:mysql://"+HOST+":"+PORT+"/"+DATABASE;
