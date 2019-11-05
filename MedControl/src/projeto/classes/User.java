@@ -12,7 +12,7 @@ import projeto.sql.Sql;
 
 public class User {
 	private String nome,cpf,cep,endereco;
-	private String email,userName,senha;
+	private String email,userName,senha,pergunta,resposta;
 	private double peso;
 	private int idade,id,idConta;
 	
@@ -21,7 +21,7 @@ public class User {
 	}
 	
 	//CRUD
-	public void createUser(String emailuser, String username, String pswd, String pergunta) {
+	public void createUser(String emailuser, String username, String pswd, String pergunta, String resposta) {
 		try {
 			setEmail(emailuser);
 			setUserName(username);
@@ -30,14 +30,15 @@ public class User {
 			java.sql.Connection conn = Sql.getConexao();
 			System.out.println(Sql.statusConection()+": createUser()");
 			
-			String query = "INSERT INTO conta(email,userName,senha,pergunta,stats) VALUES(?,?,?,?,?)";
+			String query = "INSERT INTO conta(email,userName,senha,pergunta,resposta,stats) VALUES(?,?,?,?,?,?)";
 			
 			java.sql.PreparedStatement stmt = conn.prepareStatement(query);
 			stmt.setString(1, emailuser);
 			stmt.setString(2, username);
 			stmt.setString(3, pswd);
 			stmt.setString(4, pergunta);
-			stmt.setString(5, "1");
+			stmt.setString(5, resposta);
+			stmt.setString(6, "1");
 			
 			stmt.execute();
 			conn.close();
@@ -55,7 +56,7 @@ public class User {
 			
 			String query = "SELECT conta.id,usuario.id, usuario.nome, usuario.idade, "
 					+ "usuario.peso, usuario.endereco, usuario.cep, "
-					+ "usuario.cpf, conta.email FROM usuario JOIN "
+					+ "usuario.cpf, conta.email, conta.pergunta, conta.resposta FROM usuario JOIN "
 					+ "conta ON conta.id = usuario.idConta "
 					+ "WHERE conta.userName = '"+username+"';";
 			
@@ -64,14 +65,18 @@ public class User {
 			while(rs.next()) {
 				setIdConta(rs.getInt("conta.id"));
 				setId(rs.getInt("usuario.id"));
-				setCep(rs.getString("cep"));
-				setCpf(rs.getString("cep"));
-				setEndereco(rs.getString("endereco"));
-				setIdade(rs.getInt("idade"));
+				setCep(rs.getString("usuario.cep"));
+				setCpf(rs.getString("usuario.cpf"));
+				setEndereco(rs.getString("usuario.endereco"));
+				setIdade(rs.getInt("usuario.idade"));
 				setNome(rs.getString("usuario.nome"));
-				setPeso(rs.getFloat("peso"));
-				setEmail(rs.getString("email"));
+				setPeso(rs.getFloat("usuario.peso"));
+				setEmail(rs.getString("conta.email"));
+				setPergunta(rs.getString("conta.pergunta"));
+				setResposta(rs.getString("conta.resposta"));
 			}
+			
+			System.out.println("email = "+getEmail());
 			
 			setUserName(username);
 			
@@ -118,6 +123,36 @@ public class User {
 		}
 		catch(Exception e) {
 			System.out.println(e.getMessage());
+		}
+	}
+	
+	public boolean updatePassword(String resposta,String password) {
+		try {
+			System.out.println(resposta+" = "+this.resposta);
+			if(resposta==this.resposta) {
+				
+				Connection conn = Sql.getConexao();
+				System.out.println(Sql.statusConection()+": updatePassword()");
+				String query = "UPDATE conta SET senha = ? WHERE id = ?;";
+				
+				PreparedStatement stmt = conn.prepareStatement(query);
+				
+				stmt.setString(1, password);
+				stmt.setInt(2, id);
+				
+				stmt.execute();
+				
+				conn.close();
+				
+				setSenha(password);
+				
+				return true;
+			}
+			return false;
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage());
+			return false;
 		}
 	}
 	
@@ -232,5 +267,21 @@ public class User {
 
 	public void setIdConta(int idConta) {
 		this.idConta = idConta;
+	}
+
+	public String getPergunta() {
+		return pergunta;
+	}
+
+	public void setPergunta(String pergunta) {
+		this.pergunta = pergunta;
+	}
+
+	public String getResposta() {
+		return resposta;
+	}
+
+	public void setResposta(String resposta) {
+		this.resposta = resposta;
 	}
 }

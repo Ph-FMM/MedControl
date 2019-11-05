@@ -18,7 +18,7 @@ public class SignInFrame extends JFrame{
 	
 	private Image img;
 	private String auth,senha;
-	private JLabel lbUser,lbPswd,logar,bckgrd,red;
+	private JLabel lbUser,lbPswd,logar,bckgrd,red,forgotPass;
 	private JTextField tfUser;
 	private JSeparator sep1,sep2;
 	private JPasswordField pfSenha;
@@ -111,8 +111,13 @@ public class SignInFrame extends JFrame{
 		btSignIn.setBorderPainted(false);
 		panel.add(btSignIn);
 		
+		forgotPass = new JLabel("Esqueci a senha");
+		forgotPass.setBounds(30,410,100,25);
+		forgotPass.setForeground(Color.white);
+		panel.add(forgotPass);
+		
 		btReturn = new JButton("Return");
-		btReturn.setBounds(120, 410, 80, 25);
+		btReturn.setBounds(140, 410, 80, 25);
 		btReturn.setBackground(Color.darkGray);
 		btReturn.setForeground(Color.white);
 		btReturn.setFocusPainted(false);
@@ -142,6 +147,35 @@ public class SignInFrame extends JFrame{
 	}
 	
 	private void events(){
+		forgotPass.addMouseListener(new MouseListener() {
+			public void mouseExited(MouseEvent e) {
+				forgotPass.setForeground(Color.white);
+				
+			}
+			
+			public void mouseEntered(MouseEvent e) {
+				forgotPass.setForeground(Color.red);
+				
+			}
+			
+			public void mouseClicked(MouseEvent e) {
+				ForgotPassword frame = new ForgotPassword();
+				frame.setVisible(true);
+				dispose();
+				
+			}
+
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
 		btReturn.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
